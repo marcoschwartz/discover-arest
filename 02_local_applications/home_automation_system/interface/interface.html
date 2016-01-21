@@ -1,0 +1,27 @@
+<template name='home'>
+  <body>
+    <div class='container'>
+      <h3>Home Automation System</h3>
+
+      <div class='row'>
+        <div class='col-md-3'>Temperature: <span id='temperature'>24</span> C</div>
+        <div class='col-md-3'>Humidity: <span id='humidity'>35</span>%</div>
+      </div>
+
+      <div class='row'>
+        <div class="col-md-2">
+          <button id='on' class='btn btn-primary btn-block' type="button">On</button>
+        </div>
+        <div class="col-md-2">
+        	<button id='off' class='btn btn-danger btn-block' type="button">Off</button>
+        </div>
+      </div>
+
+      <div class='row'>
+        <div class="col-md-2">Motion sensor:</div>
+        <div class="col-md-2"><span id='motion'>{{motionStatus}}</span></div>
+      </div>
+
+    </div>
+  </body>
+</template>

@@ -1,0 +1,33 @@
+<template name='home'>
+
+  <body>
+
+    <div class='container'>
+
+      <h3>ESP8266 Monitoring</h3>
+
+      <div class='row row-title'>
+        <div class='col-md-3'>Time</div>
+        <div class='col-md-1'>Device</div>
+        <div class='col-md-2'>Variable</div>
+        <div class='col-md-2'>Data</div>
+      </div>
+
+      {{#each events}}
+        {{> event}}
+      {{/each}}
+      
+    </div>
+
+  </body>
+
+</template>
+
+<template name='event'>
+  <div class='row'>
+    <div class='col-md-3'><span class='label label-primary'>{{livestamp timestamp}}</span></div>
+    <div class='col-md-1'>{{device}}</div>
+    <div class='col-md-2'>{{variable}}</div>
+    <div class='col-md-2'>{{value}}</div>
+  </div>
+</template>
