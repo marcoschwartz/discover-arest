@@ -5,7 +5,6 @@ $( document ).ready(function() {
 
     // Set device pins
     device.pinMode(6, "OUTPUT");
-    device.pinMode(2, "INPUT");
 
     // Button
     $('#on').click(function() {

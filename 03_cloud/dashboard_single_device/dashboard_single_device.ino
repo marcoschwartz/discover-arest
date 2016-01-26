@@ -14,8 +14,8 @@ aREST rest = aREST(client);
 char* device_id = "3g83df";
 
 // WiFi parameters
-const char* ssid = "Flat15";
-const char* password = "marcowifi15";
+const char* ssid = "wifi-name";
+const char* password = "wifi-password";
 
 // Variables to be exposed to the API
 int temperature;

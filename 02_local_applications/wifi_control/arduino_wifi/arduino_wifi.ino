@@ -23,12 +23,12 @@ Adafruit_CC3000 cc3000 = Adafruit_CC3000(ADAFRUIT_CC3000_CS, ADAFRUIT_CC3000_IRQ
 // Create aREST instance
 aREST rest = aREST();
 
-// Your WiFi SSID and password                                         
-#define WLAN_SSID       "Jarex_5A"
-#define WLAN_PASS       "connect1337"
+// Your WiFi SSID and password
+#define WLAN_SSID       "wifi-name"
+#define WLAN_PASS       "wifi-password"
 #define WLAN_SECURITY   WLAN_SEC_WPA2
 
-// The port to listen for incoming TCP connections 
+// The port to listen for incoming TCP connections
 #define LISTEN_PORT           80
 
 // Server instance
@@ -39,13 +39,13 @@ int temperature;
 int humidity;
 
 void setup(void)
-{  
+{
   // Start Serial
   Serial.begin(115200);
 
-  // Init DHT 
+  // Init DHT
   dht.begin();
-  
+
   // Give name and ID to device
   rest.set_id("1");
   rest.set_name("cc3000");
@@ -53,7 +53,7 @@ void setup(void)
   // Expose variables
   rest.variable("temperature", &temperature);
   rest.variable("humidity", &humidity);
-  
+
   // Set up CC3000 and get connected to the wireless network.
   Serial.print(F("CC3000 init ... "));
   if (!cc3000.begin())
@@ -62,7 +62,7 @@ void setup(void)
   }
 
   Serial.println(F(" done"));
-  
+
   if (!cc3000.connectToAP(WLAN_SSID, WLAN_PASS, WLAN_SECURITY)) {
     while(1);
   }
@@ -71,12 +71,12 @@ void setup(void)
     delay(100);
   }
   Serial.println();
-  
+
   // Print CC3000 IP address. Enable if mDNS doesn't work
   while (! displayConnectionDetails()) {
     delay(1000);
   }
-   
+
   // Start server
   restServer.begin();
   Serial.println(F("Listening for connections..."));
@@ -90,7 +90,7 @@ void loop() {
   // Reading temperature and humidity
   humidity = dht.readHumidity();
   temperature = dht.readTemperature();
-  
+
   // Handle REST calls
   Adafruit_CC3000_ClientRef client = restServer.available();
   rest.handle(client);
@@ -99,14 +99,14 @@ void loop() {
   // Check connection, reset if connection is lost
   if(!cc3000.checkConnected()){while(1){}}
   wdt_reset();
- 
+
 }
 
 // Print connection details of the CC3000 chip
 bool displayConnectionDetails(void)
 {
   uint32_t ipAddress, netmask, gateway, dhcpserv, dnsserv;
-  
+
   if(!cc3000.getIPAddress(&ipAddress, &netmask, &gateway, &dhcpserv, &dnsserv))
   {
     Serial.println(F("Unable to retrieve the IP Address!\r\n"));

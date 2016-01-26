@@ -22,8 +22,8 @@ aREST rest = aREST(client);
 char* device_id = "9u2co4";
 
 // WiFi parameters
-const char* ssid = "Jarex_5A";
-const char* password = "connect1337";
+const char* ssid = "wifi-name";
+const char* password = "wifi-password";
 
 // Variables to be exposed to the API
 float temperature;
@@ -37,7 +37,7 @@ void setup(void)
   // Start Serial
   Serial.begin(115200);
 
-  // Init DHT 
+  // Init DHT
   dht.begin();
 
   // Set callback

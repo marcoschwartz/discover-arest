@@ -14,10 +14,10 @@ aREST rest = aREST();
 DHT dht(DHTPIN, DHTTYPE, 15);
 
 // WiFi parameters
-const char* ssid = "Jarex_5A";
-const char* password = "connect1337";
+const char* ssid = "wifi-name";
+const char* password = "wifi-password";
 
-// The port to listen for incoming TCP connections 
+// The port to listen for incoming TCP connections
 #define LISTEN_PORT           80
 
 // Create an instance of the server
@@ -28,13 +28,13 @@ float temperature;
 float humidity;
 
 void setup(void)
-{  
+{
   // Start Serial
   Serial.begin(115200);
-  
-  // Init DHT 
+
+  // Init DHT
   dht.begin();
-  
+
   // Give name and ID to device
   rest.set_id("1");
   rest.set_name("esp8266_control");
@@ -42,7 +42,7 @@ void setup(void)
   // Expose variables
   rest.variable("temperature", &temperature);
   rest.variable("humidity", &humidity);
-  
+
   // Connect to WiFi
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED) {
@@ -51,22 +51,22 @@ void setup(void)
   }
   Serial.println("");
   Serial.println("WiFi connected");
- 
+
   // Start the server
   server.begin();
   Serial.println("Server started");
-  
+
   // Print the IP address
   Serial.println(WiFi.localIP());
-  
+
 }
 
 void loop() {
-    
+
   // Reading temperature and humidity
   humidity = dht.readHumidity();
   temperature = dht.readTemperature();
-   
+
   // Handle REST calls
   WiFiClient client = server.available();
   if (!client) {
@@ -76,5 +76,5 @@ void loop() {
     delay(1);
   }
   rest.handle(client);
- 
+
 }

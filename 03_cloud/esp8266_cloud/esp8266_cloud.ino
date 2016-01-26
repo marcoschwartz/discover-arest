@@ -14,8 +14,8 @@ aREST rest = aREST(client, "159.203.91.147");
 char* device_id = "9u2co4";
 
 // WiFi parameters
-const char* ssid = "Jarex_5A";
-const char* password = "connect1337";
+const char* ssid = "wifi-name";
+const char* password = "wifi-password";
 
 // Declare functions to be exposed to the API
 int ledControl(String command);
