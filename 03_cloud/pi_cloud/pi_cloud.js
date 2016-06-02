@@ -47,4 +47,3 @@ if (sensor.initialize()) {
 } else {
   console.warn('Failed to initialize sensor');
 }
-```
